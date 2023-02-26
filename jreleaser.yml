@@ -1,0 +1,48 @@
+environment:
+  properties:
+    jdkPathPrefix: target/jdks
+    graalFilePrefix: graalvm-ce-java17-22.3.0
+    artifactsDir: out/jreleaser/assemble/helloworld/native-image
+
+project:
+  name: helloworld
+  description: HelloWorld in Java
+  longDescription: HelloWorld in Java
+  links:
+    homepage: https://github.com/jreleaser/helloworld-graalvm
+  authors:
+    - Andres Almiray
+  license: APACHE-2.0
+  inceptionYear: 2023
+  stereotype: CLI
+  java:
+    groupId: org.jreleaser.examples
+    artifactId: helloworld
+    version: 17
+
+release:
+  github:
+    overwrite: true
+    changelog:
+      formatted: ALWAYS
+      preset: conventional-commits
+      contributors:
+        format: '- {{contributorName}}{{#contributorUsernameAsLink}} ({{.}}){{/contributorUsernameAsLink}}'
+
+assemble:
+  nativeImage:
+    helloworld:
+      active: ALWAYS
+      imageName: '{{distributionName}}-{{projectEffectiveVersion}}'
+      mainJar:
+        path: 'target/{{distributionName}}-{{projectVersion}}.jar'
+      graalJdks:
+        - path: '{{jdkPathPrefix}}/graalvm22OsxIntel/{{graalFilePrefix}}/Contents/Home'
+          platform: 'osx-x86_64'
+        - path: '{{jdkPathPrefix}}/graalvm22LinuxIntel/{{graalFilePrefix}}'
+          platform: 'linux-x86_64'
+        - path: '{{jdkPathPrefix}}/graalvm22WindowsIntel/{{graalFilePrefix}}'
+          platform: 'windows-x86_64'
+      upx:
+        active: ALWAYS
+        version: '3.96'
