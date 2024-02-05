@@ -33,7 +33,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: main
           fetch-depth: 0
@@ -43,11 +43,10 @@ jobs:
         with:
           version: ${{ inputs.graal-version }}
           java-version: ${{ inputs.graal-java-version }}
-          components: 'native-image'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-
+          
       - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: ${{ inputs.java-version }}
           distribution: ${{ inputs.java-distro }}
@@ -59,10 +58,6 @@ jobs:
       - name: Build
         run: ./mvnw -ntp -B verify
 
-      - name: Install upx
-        run: brew install upx
-        if: ${{ runner.os == 'macOS' }}
-
       - name: Assemble
         uses: jreleaser/release-action@v2
         with:
@@ -73,16 +68,17 @@ jobs:
 
       - name: JReleaser output
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: jreleaser-release
+          name: jreleaser-assemble-${{ runner.os }}-${{ runner.arch }}
           path: |
             out/jreleaser/trace.log
             out/jreleaser/output.properties
 
       - name: Upload jpackage
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           retention-days: 1
+          name: artifact-${{ runner.os }}-${{ runner.arch }}
           path: |
             out/jreleaser/assemble/helloworld/native-image/*.zip

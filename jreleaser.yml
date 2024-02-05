@@ -2,7 +2,6 @@ environment:
   properties:
     jdkPathPrefix: target/jdks
     graalFilePrefix: graalvm-ce-java17-22.3.0
-    artifactsDir: out/jreleaser/assemble/helloworld/native-image
 
 project:
   name: helloworld
@@ -44,6 +43,3 @@ assemble:
           platform: 'linux-x86_64'
         - path: '{{jdkPathPrefix}}/graalvm22WindowsIntel/{{graalFilePrefix}}'
           platform: 'windows-x86_64'
-      upx:
-        active: ALWAYS
-        version: '3.96'
