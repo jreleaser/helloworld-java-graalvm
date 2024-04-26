@@ -34,7 +34,7 @@
     <app.main.class>org.jreleaser.examples.HelloWorld</app.main.class>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>17</java.version>
-    <jdk.version>22.3</jdk.version>
+    <jdk.version>22.0.1</jdk.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -67,7 +67,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.12.1</version>
+        <version>3.13.0</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -92,28 +92,35 @@
           <plugin>
             <groupId>org.jreleaser</groupId>
             <artifactId>jdks-maven-plugin</artifactId>
-            <version>1.10.0</version>
+            <version>1.11.0</version>
             <configuration>
               <pkgs>
                 <pkg>
                   <name>graalvm22LinuxIntel</name>
                   <platform>linux-x86_64</platform>
                   <version>${jdk.version}</version>
-                  <distribution>graalvm_ce17</distribution>
+                  <distribution>graalvm_community</distribution>
                   <archiveType>tar.gz</archiveType>
                 </pkg>
                 <pkg>
                   <name>graalvm22OsxIntel</name>
                   <platform>osx-x86_64</platform>
                   <version>${jdk.version}</version>
-                  <distribution>graalvm_ce17</distribution>
+                  <distribution>graalvm_community</distribution>
+                  <archiveType>tar.gz</archiveType>
+                </pkg>
+                <pkg>
+                  <name>graalvm22OsxArm</name>
+                  <platform>osx-aarch64</platform>
+                  <version>${jdk.version}</version>
+                  <distribution>graalvm_community</distribution>
                   <archiveType>tar.gz</archiveType>
                 </pkg>
                 <pkg>
                   <name>graalvm22WindowsIntel</name>
                   <platform>windows-x86_64</platform>
                   <version>${jdk.version}</version>
-                  <distribution>graalvm_ce17</distribution>
+                  <distribution>graalvm_community</distribution>
                 </pkg>
               </pkgs>
             </configuration>

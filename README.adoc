@@ -13,6 +13,7 @@ This repository shows how to configure link:https://github.com/features/actions[
  * compile a helloworld app with bundled Java Runtimes using GraalVM Native Image for:
   ** `linux-x86_64`
   ** `osx-x86_64`
+  ** `osx-aarch_64`
   ** `windows-x86_64`
  * assemble distributions with JReleaser
  * create rolling early-access releases with JReleaser on every push to `main` branch

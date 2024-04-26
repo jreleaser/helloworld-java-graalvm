@@ -1,7 +1,7 @@
 environment:
   properties:
     jdkPathPrefix: target/jdks
-    graalFilePrefix: graalvm-ce-java17-22.3.0
+    graalFilePrefix: graalvm-community-openjdk-22.0.1+8.1
 
 project:
   name: helloworld
@@ -19,6 +19,10 @@ project:
     groupId: org.jreleaser.examples
     artifactId: helloworld
     mainClass: org.jreleaser.examples.HelloWorld
+
+platform:
+  replacements:
+    aarch_64: aarch64
 
 release:
   github:
@@ -39,6 +43,8 @@ assemble:
       graalJdks:
         - path: '{{jdkPathPrefix}}/graalvm22OsxIntel/{{graalFilePrefix}}/Contents/Home'
           platform: 'osx-x86_64'
+        - path: '{{jdkPathPrefix}}/graalvm22OsxArm/{{graalFilePrefix}}/Contents/Home'
+          platform: 'osx-aarch_64'
         - path: '{{jdkPathPrefix}}/graalvm22LinuxIntel/{{graalFilePrefix}}'
           platform: 'linux-x86_64'
         - path: '{{jdkPathPrefix}}/graalvm22WindowsIntel/{{graalFilePrefix}}'
