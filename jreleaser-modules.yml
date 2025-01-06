@@ -14,12 +14,13 @@ project:
   license: APACHE-2.0
   inceptionYear: 2023
   stereotype: CLI
-  java:
-    version: 17
-    groupId: org.jreleaser.examples
-    artifactId: helloworld
-    mainClass: org.jreleaser.examples.HelloWorld
-    mainModule: org.jreleaser.examples
+  languages:
+    java:
+      version: 17
+      groupId: org.jreleaser.examples
+      artifactId: helloworld
+      mainClass: org.jreleaser.examples.HelloWorld
+      mainModule: org.jreleaser.examples
 
 platform:
   replacements:
@@ -44,7 +45,7 @@ assemble:
       graalJdks:
         - path: '{{jdkPathPrefix}}/graalvm22OsxIntel/{{graalFilePrefix}}/Contents/Home'
           platform: 'osx-x86_64'
-        - path: '{{jdkPathPrefix}}/graalvm22OsxIntel/{{graalFilePrefix}}/Contents/Home'
+        - path: '{{jdkPathPrefix}}/graalvm22OsxArm/{{graalFilePrefix}}/Contents/Home'
           platform: 'osx-aarch_64'
         - path: '{{jdkPathPrefix}}/graalvm22LinuxIntel/{{graalFilePrefix}}'
           platform: 'linux-x86_64'
